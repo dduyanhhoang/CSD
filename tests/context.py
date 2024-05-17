@@ -4,4 +4,4 @@ import sys
 import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from data_structure import Array
+from data_structures import Array

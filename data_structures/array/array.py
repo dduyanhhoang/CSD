@@ -26,3 +26,12 @@ class Array:
 
 	def __len__(self) -> int:
 		return self.capacity
+
+	def __getitem__(self, index):
+		if not (0 <= index <= self.capacity):
+			raise IndexError('invalid index')
+		return self._array[index]
+
+	def append(self, obj):
+		if self._element == self._capacity:
+			raise 

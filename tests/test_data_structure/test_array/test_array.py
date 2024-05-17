@@ -1,5 +1,5 @@
 import pytest
-from data_structure.array.array import Array
+from data_structures import Array
 
 def test_initialization():
     arr = Array(10)
