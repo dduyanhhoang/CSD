@@ -4,7 +4,7 @@ import ctypes
 
 class Array:
 	def __init__(self, capacity: int):
-		self._index = 0
+		self.index = 0
 		self.capacity = capacity
 		self._array = self._make_array(self.capacity)
 
@@ -22,6 +22,14 @@ class Array:
 	def index(self):
 		return self._index
 
+	@index.setter
+	def index(self, value: int):
+		self._index = value
+
+	@property
+	def array(self):
+		return self._array
+
 	def _make_array(self, capacity: int):
 		return (capacity * ctypes.py_object)()
 
@@ -33,8 +41,8 @@ class Array:
 			raise IndexError('invalid index')
 		return self._array[index]
 
-	def append(self, obj):
-		if self._index == self._capacity:
+	def insert(self, obj):
+		if self.index == self.capacity:
 			raise CapacityReachedError()
-		self._array[self._index] = obj
-		self._index += 1
+		self._array[self.index] = obj
+		self.index += 1

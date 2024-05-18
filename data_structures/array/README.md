@@ -1,6 +1,8 @@
 # Array
+
+```
 Array structure:
-+data[]
++array
 +index
 +capacity
 
@@ -10,3 +12,19 @@ Array structure:
     check -> delete -> insert?
 -search(value) -> bool
 -display()
+```
+
+# Dynamic Array
+
+```
+Dynamic array structure:
++elements
++capacity
++array
+-DynamicArray
+-resize
+-append
+-insert(index)
+-remove(value)
+-remove(index)
+```
