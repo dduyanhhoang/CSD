@@ -1,8 +1,6 @@
 import ctypes                                           # provide low-level arrays
 
 class DynamicArray:
-    """A dynamic array class akin to a simplified Python list."""
-
     def __init__(self):
         self._index = 0
         self._capacity = 1
@@ -49,7 +47,7 @@ class DynamicArray:
         return (c * ctypes.py_object)()
 
     def insert(self, index: int, value) -> None:
-        if not (isinstance(index, int) and 0 <= index < self.index):
+        if not (isinstance(index, int) and 0 <= index <= self.index):
             raise IndexError('invalid index')
 
         if self.index == self.capacity:
