@@ -1,9 +1,10 @@
+from data_structures.exceptions import CapacityReachedError
 import ctypes
 
 
 class Array:
 	def __init__(self, capacity: int):
-		self._element = 0
+		self._index = 0
 		self.capacity = capacity
 		self._array = self._make_array(self.capacity)
 
@@ -18,8 +19,8 @@ class Array:
 		self._capacity = value
 
 	@property
-	def element(self):
-		return self._element
+	def index(self):
+		return self._index
 
 	def _make_array(self, capacity: int):
 		return (capacity * ctypes.py_object)()
@@ -33,5 +34,7 @@ class Array:
 		return self._array[index]
 
 	def append(self, obj):
-		if self._element == self._capacity:
-			raise 
+		if self._index == self._capacity:
+			raise CapacityReachedError()
+		self._array[self._index] = obj
+		self._index += 1
