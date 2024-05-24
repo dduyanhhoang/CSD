@@ -1,6 +1,8 @@
 from typing import Optional
 from .node import Node
 
+from data_structures.exceptions import NodeNotFoundError
+
 
 class LinkedList:
     def __init__(self):
@@ -12,7 +14,7 @@ class LinkedList:
         return self._size
 
     @size.setter
-    def size(self, value):
+    def size(self, value: int) -> None:
         if value < 0:
             raise ValueError('linked list size could not be negative')
         self._size = value
@@ -27,10 +29,35 @@ class LinkedList:
             raise TypeError('head must be a Node or None')
         self._head = target_node
     
-    def __len__(self):
+    def __len__(self) -> int:
         return self.size
 
-    def insert_first(self, value) -> None:
+    def insert_first(self, value: any) -> None:
         new_first = Node(value, self._head)
         self._head = new_first
-        self._size += 1
+        self.size += 1
+
+    def search_node_by_value(self, value: any) -> Node:
+        track_node = self._head
+        while track_node:
+            if track_node.data == value:
+                return track_node
+            track_node = track_node.next
+        raise NodeNotFoundError(value)
+
+    def insert_after_node(self, target_node: Node, value: any) -> None:
+        if not target_node:
+            raise ValueError('target_node could not be None')
+
+        new_node = Node(value, target_node.next)
+        target_node.next = new_node
+        self.size += 1
+
+    def insert_last(self, value: any) -> None:
+        if self.head is None:
+            self.insert_first(value)
+        else:
+            last_node = self._head
+            while last_node.next is not None:
+                last_node = last_node.next
+            self.insert_after_node(last_node, value)
