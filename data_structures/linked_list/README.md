@@ -11,6 +11,7 @@ Linked list:
 -delete_last()
 -delete_after_node(node)
 -update(target_node, value)
--search(value)
+-search_node_by_value(value)
 -__str__()
+-show_linked_list()
 ```
