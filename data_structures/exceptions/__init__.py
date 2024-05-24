@@ -1,1 +1,2 @@
 from .capacity_reached_error import CapacityReachedError
+from .node_not_found_error import NodeNotFoundError
