@@ -49,6 +49,9 @@ class LinkedList:
         if not target_node:
             raise ValueError('target_node could not be None')
 
+        if not isinstance(target_node, Node):
+            raise TypeError('target_node must be a Node')
+
         new_node = Node(value, target_node.next)
         target_node.next = new_node
         self.size += 1
@@ -61,3 +64,42 @@ class LinkedList:
             while last_node.next is not None:
                 last_node = last_node.next
             self.insert_after_node(last_node, value)
+
+    def delete_first(self) -> None:
+        if self.size == 0:
+            raise ValueError('linked list is empty')
+
+        first_node = self.head
+        self._head = self._head.next
+        first_node.next = None
+        self.size -= 1
+
+    def delete_after_node(self, target_node: Node) -> None:
+        if not target_node:
+            raise ValueError('target_node could not be None')
+
+        if not isinstance(target_node, Node):
+            raise TypeError('target_node must be a Node')
+
+        if target_node.next is None:
+            raise ValueError('target_node could not be the last Node')
+
+        node_to_del = target_node.next
+        target_node.next = node_to_del.next
+        node_to_del.next = None
+        self.size -= 1
+
+    def delete_last(self) -> None:
+        if self.size == 0:
+            raise ValueError('linked list is empty')
+        elif self.size == 1:
+            self.delete_first()
+        else:
+            penultimate_node = self.head
+            while penultimate_node.next and penultimate_node.next.next:
+                penultimate_node = penultimate_node.next
+                last_node = penultimate_node.next
+
+            penultimate_node.next = last_node.next
+            last_node.next = None
+            self.size -= 1
