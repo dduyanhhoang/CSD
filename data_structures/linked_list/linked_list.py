@@ -103,3 +103,23 @@ class LinkedList:
             penultimate_node.next = last_node.next
             last_node.next = None
             self.size -= 1
+
+    def __str__(self) -> str:
+        if self.size == 0:
+            return f"*head{'\n|' * 3}\nNone"
+
+        ll_str = "* [head]"
+        track_node = self.head
+        counter = 0
+
+        while track_node:
+            ll_str += f"{'\n|' * 3}\n* [{track_node.data}]"
+            track_node = track_node.next
+            counter += 1
+
+        return ll_str + f"{'\n|' * 3}\n* [None]"
+
+
+    def show_linked_list(self) -> None:
+        print(f"Linked list has {self.size} nodes:")
+        print(self)
