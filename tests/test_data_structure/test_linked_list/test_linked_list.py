@@ -52,6 +52,20 @@ def test_insert_last():
 	assert ll.search_node_by_value(4).next is None
 
 
+def test_update_node():
+	ll = LinkedList()
+	with pytest.raises(NodeNotFoundError):
+		ll.update_node(Node(1, None), 2)
+	
+	ll.insert_first(0)
+	ll.insert_first(1)
+	ll.insert_first(2)
+
+	assert ll.update_node(ll.search_node_by_value(1), 3) == True
+	assert len(ll) == 3
+	assert ll.search_node_by_value(2).next.data == 3
+
+
 def test_delete_first():
 	ll = LinkedList()
 	with pytest.raises(ValueError):
