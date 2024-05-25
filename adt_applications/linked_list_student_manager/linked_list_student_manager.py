@@ -1,4 +1,4 @@
-from student import Student
+from .student import Student
 from data_structures.linked_list import LinkedList 
 from data_structures.linked_list import Node
 from data_structures.exceptions import NodeNotFoundError
