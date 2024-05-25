@@ -65,6 +65,23 @@ class LinkedList:
                 last_node = last_node.next
             self.insert_after_node(last_node, value)
 
+    def update_node(self, target_node: Node, value) -> bool:
+        if not target_node:
+            raise ValueError('target_nocd could not be None')
+
+        if not isinstance(target_node, Node):
+            raise TypeError('target_node must be a Node')
+
+        track_node = self.head
+        while track_node:
+            if track_node == target_node:
+                target_node.data = value
+                return True
+            track_node = track_node.next
+
+        raise NodeNotFoundError()
+
+
     def delete_first(self) -> None:
         if self.size == 0:
             raise ValueError('linked list is empty')
